@@ -35,7 +35,7 @@ class Megjelenitsor{
         this.elem.append(txt);
     }
     #esemenyTrigger(esemenyneve){
-        const esemenyem = new CustomEvent(esemenyneve,{detail:this});
+        const esemenyem = new CustomEvent(esemenyneve,{detail:this.#obj});
         window.dispatchEvent(esemenyem);
     }
 }
