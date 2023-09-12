@@ -5,4 +5,7 @@ import { TODOLIST2 } from "./adatok.js";
 $(function() {
     const TAROLO = $(".tarolo");
    new Megjelenites(TODOLIST2,TAROLO);
+   $(window).on("törlés",function (event) {
+    console.log(event.detail)
+   })
 })

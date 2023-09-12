@@ -9,7 +9,6 @@ class Megjelenitsor{
         this.MegseElem = this.sorElem.children("td").children(".megse");
         this.MegseElem.css("display", "none");
         this.RemoveElem = this.sorElem.children("td").children(".remove")
-        console.log(this.KeszElem);
         this.KeszElem.on("click",()=>{
             this.sorElem.css("background-color","green");
             this.MegseElem.css("display", "block");
@@ -22,6 +21,7 @@ class Megjelenitsor{
         })
         this.RemoveElem.on("click",()=>{
             this.sorElem.remove();
+            this.#esemenyTrigger("törlés");
         })
     }
     #sor(){
@@ -33,6 +33,10 @@ class Megjelenitsor{
         txt += `<td><button type="button" class="kesz">✅</button><button type="button" class="megse">❌</button></td><td><button type="button" class="remove">Törlés</button></td></tr>`;
         txt += "</tr>";
         this.elem.append(txt);
+    }
+    #esemenyTrigger(esemenyneve){
+        const esemenyem = new CustomEvent(esemenyneve,{detail:this});
+        window.dispatchEvent(esemenyem);
     }
 }
 export default Megjelenitsor
