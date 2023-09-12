@@ -1,14 +1,24 @@
-class Megjelenites{
+import Megjelenitsor from "./megjelenitSor.js";
+class Megjelenites {
+  #list = [];
+  constructor(lista,elem) {
+    this.#list = lista;
+    elem.html('<table class="table table-bordered table-striped">');
+    this.tablaElem = elem.children("table");
+    this.tablazatbeir();
+  }
+  tablazatbeir() {
+    this.#list.forEach((elem) => {
+        new Megjelenitsor(elem,this.tablaElem);
+        /*txt += "<tr>";
+        for (const key in elem) {
+            txt += `<td>${elem[key]}</td>`;
+            
+        }
+        txt+= `<td><button type="button" onclick="">✅</button></td><td><button type="button" onclick="">❌</button></td></tr>`;
+        txt += "</tr>";*/
 
-    constructor(TODOLIST_ALAP,TODOLIST_ALAP2){
-    const TAROLO = $(".tarolo");
-    let txt = "<table>";
-    for (let i = 0; i < TODOLIST_ALAP.length; i++) {
-        txt += `<tr><td class="table table-hover" >${TODOLIST_ALAP[i]}</td><td class="table table-hover" >${TODOLIST_ALAP2[i].hatarido}</td></tr>`;
-        
-    }
-    txt += "</table>";
-    TAROLO.html(txt);
-    }
+    });
+  }
 }
 export default Megjelenites;

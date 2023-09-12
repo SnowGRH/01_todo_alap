@@ -3,5 +3,6 @@ import { TODOLIST } from "./adatok.js";
 import { TODOLIST2 } from "./adatok.js";
 
 $(function() {
-   new Megjelenites(TODOLIST,TODOLIST2);
+    const TAROLO = $(".tarolo");
+   new Megjelenites(TODOLIST2,TAROLO);
 })
