@@ -1,26 +1,35 @@
 class Megjelenitsor{
     #obj ={}
-    constructor(obj,elem){
+    #index 
+    constructor(obj,elem, index){
         this.#obj=obj;
         this.elem =elem;
+        this.#index = index;
         this.#sor();
         this.sorElem = this.elem.children("tr:last-child");
         this.KeszElem = this.sorElem.children("td").children(".kesz");
         this.MegseElem = this.sorElem.children("td").children(".megse");
         this.MegseElem.css("display", "none");
         this.RemoveElem = this.sorElem.children("td").children(".remove")
-        this.KeszElem.on("click",()=>{
+        if (this.#obj.kesz == true) {
             this.sorElem.css("background-color","green");
             this.MegseElem.css("display", "block");
             this.KeszElem.css("display", "none");
-        })
-        this.MegseElem.on("click",()=>{
+        }
+        else{
             this.sorElem.css("background-color","white");
             this.KeszElem.css("display", "block");
             this.MegseElem.css("display", "none");
+        }
+        this.KeszElem.on("click",()=>{
+            this.#esemenyTrigger("kesz");
+        })
+        this.MegseElem.on("click",()=>{
+            this.#esemenyTrigger("megse")
         })
         this.RemoveElem.on("click",()=>{
-            this.sorElem.remove();
+            //this.sorElem.remove();
+            
             this.#esemenyTrigger("törlés");
         })
     }
@@ -35,7 +44,7 @@ class Megjelenitsor{
         this.elem.append(txt);
     }
     #esemenyTrigger(esemenyneve){
-        const esemenyem = new CustomEvent(esemenyneve,{detail:this.#obj});
+        const esemenyem = new CustomEvent(esemenyneve,{detail:this.#index});
         window.dispatchEvent(esemenyem);
     }
 }

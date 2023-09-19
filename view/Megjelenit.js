@@ -8,8 +8,8 @@ class Megjelenites {
     this.tablazatbeir();
   }
   tablazatbeir() {
-    this.#list.forEach((elem) => {
-        new Megjelenitsor(elem,this.tablaElem);
+    this.#list.forEach((elem, index) => {
+        new Megjelenitsor(elem,this.tablaElem, index);
         /*txt += "<tr>";
         for (const key in elem) {
             txt += `<td>${elem[key]}</td>`;
