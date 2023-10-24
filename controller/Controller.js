@@ -1,34 +1,41 @@
 import Megjelenites from "../view/Megjelenit.js";
-import Model from "../model/model.js";
 import Urlap from "../view/Urlap.js";
+import Model from "../model/model.js";
+import Dataservice from "../model/Dataservice.js";
 
 class Controller {
   constructor() {
-    const TAROLO = $(".tarolo");
-    const MODEL = new Model();
-    new Urlap({ tevekenyseg: "", hatarido: "" },$(".ujadat"));
-    new Megjelenites(MODEL.getlista(), TAROLO);
+    const MODELEK = new Model();
+    this.Dataservice = new Dataservice();
+
+    new Urlap(MODELEK.leiro,$(".ujadat"));
+    this.Dataservice.getdata("model/adat.json",this.Megjelenit);
+
+
     $(window).on("ujAdatHozzadas", (event) => {
 
-      MODEL.torol(event.detail);
+      this.Dataservice.torol(event.detail);
       TAROLO.empty();
     });
     $(window).on("törlés", function (event) {
 
-      MODEL.torol(event.detail);
+      this.Dataservice.getdata.torol(event.detail);
       TAROLO.empty();
-      new Megjelenites(MODEL.getlista(), TAROLO);
+      new Megjelenites(this.Dataservice.getdata("model/adat.json"), TAROLO);
     });
     $(window).on("kesz", (event) => {
-      MODEL.kesz(event.detail);
+      this.Dataservice.kesz(event.detail);
       TAROLO.empty();
-      new Megjelenites(MODEL.getlista(), TAROLO);
+      new Megjelenites(this.Dataservice.getdata("model/adat.json"), TAROLO);
     });
     $(window).on("megse", (event) => {
-      MODEL.megse(event.detail);
+      this.Dataservice.megse(event.detail);
       TAROLO.empty();
-      new Megjelenites(MODEL.getlista(), TAROLO);
+      new Megjelenites(this.Dataservice.getdata("model/adat.json"), TAROLO);
     });
+  }
+  Megjelenit(lista){
+    new Megjelenites(lista,$(".tarolo"));
   }
 }
 export default Controller;
